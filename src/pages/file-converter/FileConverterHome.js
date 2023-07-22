@@ -96,7 +96,7 @@ const FileConverterHome = () => {
                     </button>
                 </div>
                 {/* Link to Home Page */}
-                <Link to="/home" className="bg-blue-500 rounded-lg text-neutral-50 py-2 px-4 ">
+                <Link to="/" className="bg-blue-500 rounded-lg text-neutral-50 py-2 px-4 ">
                     Go To Home
                 </Link>
             </div>
