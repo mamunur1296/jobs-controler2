@@ -56,16 +56,30 @@ const FileConverterHome = () => {
         // Handle search logic based on searchQuery
     };
 
+    // Pagination
+    const itemsPerPage = 10; // Number of items to display per page
+    const [currentPage, setCurrentPage] = useState(1); // Current page number
+
+    // Calculate total number of pages
+    const totalPages = Math.ceil(data?.employees?.length / itemsPerPage);
+
+    // Calculate the index range for items to display on the current page
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+
     // Render component
     return (
         <div className="bg-gray-900 h-screen px-32 pt-10">
+            {/* Header */}
             <div className="mb-4 flex justify-between">
+                {/* File Upload Input */}
                 <input
                     className="bg-blue-500 text-white py-2 px-4 rounded-lg"
                     type="file"
                     onChange={handleFileUpload}
                 />
                 <div className="flex">
+                    {/* Search Input */}
                     <input
                         className="bg-white w-96 text-gray-900 py-2 px-4 rounded-l"
                         type="text"
@@ -73,6 +87,7 @@ const FileConverterHome = () => {
                         value={searchQuery}
                         onChange={(event) => setSearchQuery(event.target.value)}
                     />
+                    {/* Search Button */}
                     <button
                         className="bg-blue-500 w-28 text-white py-2 px-4 rounded-r"
                         onClick={handleSearch}
@@ -80,29 +95,35 @@ const FileConverterHome = () => {
                         <FontAwesomeIcon icon={faSearch} />
                     </button>
                 </div>
+                {/* Link to Home Page */}
                 <Link to="/home" className="bg-blue-500 rounded-lg text-neutral-50 py-2 px-4 ">
                     Go To Home
                 </Link>
             </div>
 
+            {/* Table */}
             <table className="border-collapse border text-white border-gray-300 mt-4">
                 <thead>
                     <tr>
-                        <th className="border py-3 px-6  border-gray-300 p-2">Name</th>
-                        <th className="border py-3 px-6  border-gray-300 p-2">Email</th>
-                        <th className="border py-3 px-6  border-gray-300 p-2">Phone</th>
-                        <th className="border py-3 px-6  border-gray-300 p-2">Gender</th>
-                        <th className="border py-3 px-6  border-gray-300 p-2">Address</th>
-                        <th className="border py-3 px-6  border-gray-300 p-2">Actions</th>
+                        {/* Table Headers */}
+                        <th className="border py-3 px-6 border-gray-300 p-2">Name</th>
+                        <th className="border py-3 px-6 border-gray-300 p-2">Email</th>
+                        <th className="border py-3 px-6 border-gray-300 p-2">Phone</th>
+                        <th className="border py-3 px-6 border-gray-300 p-2">Gender</th>
+                        <th className="border py-3 px-6 border-gray-300 p-2">Address</th>
+                        <th className="border py-3 px-6 border-gray-300 p-2">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {data?.employees // Render table rows based on data and filter by searchQuery
+                    {/* Table Rows */}
+                    {data?.employees
                         ?.filter((data) =>
                             data.name.toLowerCase().includes(searchQuery.toLowerCase())
                         )
+                        .slice(startIndex, endIndex) // Apply pagination to the filtered data
                         .map((data, index) => (
                             <tr key={index}>
+                                {/* Table Cells */}
                                 <td className="border border-gray-300 p-2">{data.name}</td>
                                 <td className="border border-gray-300 p-2">{data.email}</td>
                                 <td className="border border-gray-300 p-2">{data.phone}</td>
@@ -112,9 +133,25 @@ const FileConverterHome = () => {
                             </tr>
                         ))}
                 </tbody>
+            {/* Pagination */}
+            <div className="flex justify-center mt-4">
+                {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+                    <button
+                        key={page}
+                        className={`mx-1 py-2 px-4 rounded-lg ${
+                            page === currentPage ? 'bg-blue-500 text-white' : 'bg-gray-700 text-gray-300'
+                        }`}
+                        onClick={() => setCurrentPage(page)}
+                    >
+                        {page}
+                    </button>
+                ))}
+            </div>
             </table>
+
         </div>
     );
 };
 
 export default FileConverterHome;
+
