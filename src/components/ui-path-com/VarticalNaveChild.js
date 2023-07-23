@@ -38,22 +38,22 @@ const VarticalNavChild = ({folder}) => {
         {isOpen && (
           <ul >
             <li>
-              <Link to={`/main/${OrganizationUnitFullyQualifiedName}/${OrganizationUnitId}/${Key}`} className="block ps-6  text-sm">
+              <Link to={`/ui-path/${OrganizationUnitFullyQualifiedName}/${OrganizationUnitId}/${Key}`} className="block ps-6  text-sm">
               Jobs
               </Link>
             </li>
             <li>
-              <Link to="/about" className="block ps-6  text-sm">
+              <Link  className="block ps-6  text-sm">
               Processes
               </Link>
             </li>
             <li>
-              <Link to="/contact" className="block ps-6  text-sm">
+              <Link  className="block ps-6  text-sm">
               Assets
               </Link>
             </li>
             <li>
-              <Link to="/contact" className="block ps-6  text-sm">
+              <Link  className="block ps-6  text-sm">
               Queue
               </Link>
             </li>

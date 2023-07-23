@@ -57,7 +57,7 @@ const UiHome = () => {
         {/* Page title and navigation */}
         <div className="flex items-center justify-between gap-5">
           <p className='text-3xl'>Data For <span className='text-green-600'>{paramsData.name}</span></p>
-          <Link className='me-5' to="/home">Go to Home</Link>
+          <Link className='me-5' to="/">Go to Home</Link>
         </div>
 
         {/* Search bar in main content */}

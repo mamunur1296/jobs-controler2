@@ -7,6 +7,7 @@ import UiHome from "../pages/ui-path/UiHome";
 import FileConverterHome from "../pages/file-converter/FileConverterHome";
 import Login from "../pages/login/Login";
 import PrivateRoure from "./PrivateRoure";
+import JobsTable from "../components/ui-path-com/allTable/JobsTable";
 
 /**
  * Create the application router using the createBrowserRouter function.
@@ -38,6 +39,12 @@ export const router = createBrowserRouter([
     },
     {
         path: '/ui-path',
-        element: <PrivateRoure><UiHome /></PrivateRoure>  // Render the UiHome component when the URL path is '/ui-path'
+        element: <PrivateRoure><UiHome /></PrivateRoure> , // Render the UiHome component when the URL path is '/ui-path'
+        children:[
+            {
+                path: "/ui-path/:name/:id/:key",
+                element: <JobsTable />,
+            },
+        ]
     }
 ]);
