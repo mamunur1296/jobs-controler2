@@ -1,13 +1,14 @@
 import React from "react";
 import { Navigate, useLocation } from "react-router-dom";
 
+
 // PrivateRoute component to protect routes that require authentication
 const PrivateRoute = ({ children }) => {
   const location = useLocation();
   const token = JSON.parse(localStorage.getItem('authItem'));
-
+  
   // Check if the user is authenticated (token exists)
-  if (token?.token) {
+  if (token?.token ) {
     // Render the children (protected component) if authenticated
     return children;
   }

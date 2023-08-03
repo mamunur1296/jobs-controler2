@@ -19,6 +19,7 @@ export const handleTokenRefresh = async () => {
       });
 
       const data = await response.json();
+      console.log(data);
       const storeData={
         token:data.access_token,
         client_id:allStoreData.client_id,
@@ -47,12 +48,13 @@ export async function fetchGetData(UrlEndPoint , importId , bodyData ) {
         },
         body: JSON.stringify(newObj),
       });
-      if (!response.ok) {
-        localStorage.removeItem("login");
+      const responseData = await response.json();
+      console.log(response , "insite ui-path-utill");
+      if (!responseData.value ) {
+        console.log("refress area");
         handleTokenRefresh(); 
         throw new Error('Request failed');
       }
-      const responseData = await response.json();
       return responseData.value;
     } catch (error) {
       console.log(error);

@@ -8,6 +8,11 @@ import FileConverterHome from "../pages/file-converter/FileConverterHome";
 import Login from "../pages/login/Login";
 import PrivateRoure from "./PrivateRoure";
 import JobsTable from "../components/ui-path-com/allTable/JobsTable";
+import RegisterForm from "../components/authentication/RegisterForm";
+import LoginPage from "../components/authentication/LoginPage";
+import PrivateRouteAuth from "./PrivateRouteAuth";
+import SendOtp from "../components/authentication/SendOtp";
+import VarifyOtp from "../components/authentication/VarifyOtp";
 
 /**
  * Create the application router using the createBrowserRouter function.
@@ -35,7 +40,23 @@ export const router = createBrowserRouter([
     },
     {
         path: '/file-converter',
-        element: <FileConverterHome /> // Render the FileConverterHome component when the URL path is '/file-converter'
+        element: <PrivateRouteAuth><FileConverterHome /></PrivateRouteAuth>  // Render the FileConverterHome component when the URL path is '/file-converter'
+    },
+    {
+        path: '/regester',
+        element: <RegisterForm /> // Render the FileConverterHome component when the URL path is '/file-converter'
+    },
+    {
+        path: '/authlogin',
+        element: <LoginPage /> // Render the FileConverterHome component when the URL path is '/file-converter'
+    },
+    {
+        path: '/varifyotp',
+        element: <VarifyOtp /> // Render the FileConverterHome component when the URL path is '/file-converter'
+    },
+    {
+        path: '/otpauth',
+        element: <SendOtp /> // Render the FileConverterHome component when the URL path is '/file-converter'
     },
     {
         path: '/ui-path',

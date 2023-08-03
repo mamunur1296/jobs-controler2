@@ -58,7 +58,8 @@ const TableBody = ({ job ,setRef  }) => {
 
   return (
     <tr>
-      <td className="py-4 px-6 border-b text-sm border-gray-200">{job.ProcessType}</td>
+      <td className="py-4 px-6 border-b text-sm border-gray-200">{job.ReleaseName}</td>
+      <td className="py-4 px-6 border-b text-sm border-gray-200">{job.CreationTime}</td>
       {display.length > 0 ? display : <td className="py-4 px-6 border-b text-sm border-gray-200">No Data</td>}
       <td className="py-4 px-6 border-b text-sm border-gray-200">No Data</td>
       {

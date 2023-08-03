@@ -1,16 +1,15 @@
 // Importing necessary dependencies and utilities
-import React, { useState } from 'react';
+import React, {  useState } from 'react';
 import { getFromDB, postFromDB } from '../../utillies/File-Converter-utill';
 import { useQuery } from '@tanstack/react-query';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
-
+import Logout from '../../components/authentication/Logout';
 // FileConverterHome component
 const FileConverterHome = () => {
     // State for managing the search query
     const [searchQuery, setSearchQuery] = useState('');
-
     // Function to handle file upload
     const handleFileUpload = async (event) => {
         const file = event.target.files[0];
@@ -68,6 +67,7 @@ const FileConverterHome = () => {
     const endIndex = startIndex + itemsPerPage;
 
     // Render component
+   
     return (
         <div className="bg-gray-900 h-screen px-32 pt-10">
             {/* Header */}
@@ -99,6 +99,7 @@ const FileConverterHome = () => {
                 <Link to="/" className="bg-blue-500 rounded-lg text-neutral-50 py-2 px-4 ">
                     Go To Home
                 </Link>
+                <Logout />
             </div>
 
             {/* Table */}
@@ -118,7 +119,7 @@ const FileConverterHome = () => {
                     {/* Table Rows */}
                     {data?.employees
                         ?.filter((data) =>
-                            data.name.toLowerCase().includes(searchQuery.toLowerCase())
+                            data?.name?.toLowerCase()?.includes(searchQuery.toLowerCase())
                         )
                         .slice(startIndex, endIndex) // Apply pagination to the filtered data
                         .map((data, index) => (
