@@ -21,28 +21,34 @@ const LoginPage = () => {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          "Access-Control-Allow-Credentials": true,
           "cache-control":"no-cache,no-store"
         },
         credentials: 'include',
         body: JSON.stringify(formData),
       })
-      if (!response.ok) {
+      const data = await response.json();
+      console.log(data);
+      if (response.ok) {
+        refetch().then( async ()=>{
+          phonLogin().then(()=>{
+            navigate("/otpauth")
+  
+          })
+        })
+        console.log('Registration successful:', data);
+      }else if(data.errors){
+        console.log(error);
+      } else{
         throw new Error('Network response was not ok');
       }
 
-      const data = await response.json();
-      refetch().then( async ()=>{
-        phonLogin().then(()=>{
-          navigate("/otpauth")
 
-        })
-      })
-      console.log('Registration successful:', data);
       // Do something with the response data, e.g., show a success message or redirect to another page
     } catch (error) {
       console.log(error);
+      setError('Invalid credentials. Please try again.');
     }
-    setError('Invalid credentials. Please try again.');
   };
 
   return (

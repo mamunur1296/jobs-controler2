@@ -13,6 +13,10 @@ import LoginPage from "../components/authentication/LoginPage";
 import PrivateRouteAuth from "./PrivateRouteAuth";
 import SendOtp from "../components/authentication/SendOtp";
 import VarifyOtp from "../components/authentication/VarifyOtp";
+import Dashboard from "../pages/dashboard/Dashboard";
+import AdminRoute from "./AdminRoute";
+import AllUsers from "../components/dashboard/AllUsers";
+
 
 /**
  * Create the application router using the createBrowserRouter function.
@@ -54,6 +58,18 @@ export const router = createBrowserRouter([
         path: '/varifyotp',
         element: <VarifyOtp /> // Render the FileConverterHome component when the URL path is '/file-converter'
     },
+    {
+        path: '/dashboard',
+        element:  <AdminRoute> <Dashboard /></AdminRoute> ,// Render the FileConverterHome component when the URL path is '/file-converter'
+        children:[
+            {
+                path:"/dashboard",
+                element:<AllUsers />
+            },
+            
+        ]
+    },
+
     {
         path: '/otpauth',
         element: <SendOtp /> // Render the FileConverterHome component when the URL path is '/file-converter'

@@ -16,6 +16,22 @@ export const fetchLoginUserData = async () => {
     return null;
   }
 };
+export const fetchallUsers = async () => {
+  try {
+    const response = await axios.get('https://jobs-controler-server2.vercel.app/authentication/getUsers', {
+      withCredentials: true,
+    });
+
+    if (!response.data) {
+      throw new Error('User data not available');
+    }
+    console.log();
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching login user data:', error);
+    return null;
+  }
+};
 
 export const phonLogin = async (number) => {
   try {

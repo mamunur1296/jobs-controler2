@@ -8,7 +8,7 @@ const AuthProvaider = ({ children }) => {
 
   const [userotp, setUserotp]=useState("")
   const { data ,isLoading , refetch } = useQuery(['getLoginUsers'], () => fetchLoginUserData());
-
+console.log(data);
   const value = {
     users:data,
     loading:isLoading,
