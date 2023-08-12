@@ -9,7 +9,6 @@ export const fetchLoginUserData = async () => {
     if (!response.data) {
       throw new Error('User data not available');
     }
-    localStorage.setItem("isUser" ,response.data.user.email )
     return response.data.user;
   } catch (error) {
     console.error('Error fetching login user data:', error);
