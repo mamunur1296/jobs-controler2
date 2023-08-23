@@ -7,7 +7,7 @@ import { useParams } from 'react-router-dom';
 import { fetchGetData } from '../../../utillies/ui-path-utill';
 
 
-const TableBody = ({ job ,setRef  }) => {
+const TableBody = ({ job ,setRef ,i }) => {
   const depandency= false; 
   const folderData=useParams()
   const { data, isLoading, isError, refetch } = useQuery(['PROCESS_SCHEDULES', job.OrganizationUnitId], () =>
@@ -46,7 +46,7 @@ const TableBody = ({ job ,setRef  }) => {
 
   if (data) {
     display = data.map((schedule ,i) => (
-      <td key={i} className="py-4 px-6 border-b text-sm border-gray-200">
+      <td key={i} className="border border-gray-300 text-[8px] p-0 md:text-base md:p-2">
         {schedule.StartProcessCronSummary}
       </td>
     ));
@@ -57,28 +57,28 @@ const TableBody = ({ job ,setRef  }) => {
   }, [job.OrganizationUnitId,refetch]);
 
   return (
-    <tr>
-      <td className="py-4 px-6 border-b text-sm border-gray-200">{job.ReleaseName}</td>
-      <td className="py-4 px-6 border-b text-sm border-gray-200">{job.CreationTime}</td>
-      {display.length > 0 ? display : <td className="py-4 px-6 border-b text-sm border-gray-200">No Data</td>}
-      <td className="py-4 px-6 border-b text-sm border-gray-200">No Data</td>
+    <tr key={i} className={i % 2 === 0 ? "bg-gray-100" : ""} >
+      <td className="border border-gray-300 text-[8px] p-0 md:text-base md:p-2">{job.ReleaseName}</td>
+      <td className="border border-gray-300 text-[8px] p-0 md:text-base md:p-2">{job.CreationTime}</td>
+      {display.length > 0 ? display : <td className="border border-gray-300 text-[8px] p-0 md:text-base md:p-2">No Data</td>}
+      <td className="border border-gray-300 text-[8px] p-0 md:text-base md:p-2">No Data</td>
       {
         job.State === "Successful" ? (
-          <td className="py-4 px-6 border-b text-sm border-gray-200">
+          <td className="border border-gray-300 text-[8px] p-0 md:text-base md:p-2">
             <FontAwesomeIcon className='text-green-400' icon={faCircleCheck} />
             <span>{job.State}</span>
           </td>
         ) : (
-          <td className="py-4 px-6 border-b text-sm border-gray-200">
+          <td className="border border-gray-300 text-[8px] p-0 md:text-base md:p-2">
             <FontAwesomeIcon className='text-red-400' icon={faCircleExclamation} />
             <span>{job.State}</span>
           </td>
         )
       }
-      <td className="py-4 px-6 border-b text-sm border-gray-200">no data</td>
-      <td className="py-4 px-6 border-b text-sm border-gray-200">
+      <td className="border border-gray-300 text-[8px] p-0 md:text-base md:p-2">no data</td>
+      <td className="border border-gray-300 text-[8px] p-0 md:text-base md:p-2">
         <div className="flex items-center ml-4">
-          <button onClick={newTrigger} className="flex items-center border px-3 py-1 rounded-md bg-sky-700">
+          <button onClick={newTrigger} className="text-white bg-gradient-to-r text-[8px] md:text-base  from-orange-500 via-orange-600 to-orange-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-1 md:px-5 py-.5 md:py-2.5 text-center md:mr-2 md:mb-2">
             <FontAwesomeIcon icon={faPlay} className="mr-1" />
             <span>Start</span>
           </button>

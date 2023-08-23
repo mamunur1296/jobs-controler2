@@ -37,7 +37,7 @@ const JobsTable = () => {
     display = <div>Error occurred while fetching jobs.</div>;
   }
   if (sortedData.length > 0) {
-    display = currentJobs.map((job) => <TableBody key={job.key} setRef={setRef} job={job}></TableBody>);
+    display = currentJobs.map((job,i) => <TableBody i={i} key={job.key} setRef={setRef} job={job}></TableBody>);
   }
 
   const totalPages = Math.ceil(sortedData.length / jobsPerPage);
@@ -46,24 +46,25 @@ const JobsTable = () => {
   };
 
   return (
-    <>
-      <table className="min-w-full divide-y divide-gray-900">
+    <div className="overflow-x-auto">
+      <table className="min-w-full divide-y bg-orange-500 divide-gray-300 text-white">
       <thead>
           <tr className="border-b">
-            <th className="py-3 px-6 text-left text-sm divide-gray-900 text-white">Process</th>
-            <th className="py-3 px-6 text-left text-sm divide-gray-900 text-white">Start Time</th>
-            <th className="py-3 px-6 text-left text-sm divide-gray-900 text-white">Trigger Details</th>
-            <th className="py-3 px-6 text-left text-sm divide-gray-900 text-white">Next Run Time</th>
-            <th className="py-3 px-6 text-left text-sm divide-gray-900 text-white">State</th>
-            <th className="py-3 px-6 text-left text-sm divide-gray-900 text-white">Details</th>
-            <th className="py-3 px-6 text-left text-sm divide-gray-900 text-white">Action</th>
+            <th className="border md:py-3 md:px-6 border-gray-300 py-2 text-[8px] md:text-base">Process</th>
+            <th className="border md:py-3 md:px-6 border-gray-300 py-2 text-[8px] md:text-base">Start Time</th>
+            <th className="border md:py-3 md:px-6 border-gray-300 py-2 text-[8px] md:text-base">Trigger Details</th>
+            <th className="border md:py-3 md:px-6 border-gray-300 py-2 text-[8px] md:text-base">Next Run Time</th>
+            <th className="border md:py-3 md:px-6 border-gray-300 py-2 text-[8px] md:text-base">State</th>
+            <th className="border md:py-3 md:px-6 border-gray-300 py-2 text-[8px] md:text-base">State</th>
+            <th className="border md:py-3 md:px-6 border-gray-300 py-2 text-[8px] md:text-base">Details</th>
+            <th className="border md:py-3 md:px-6 border-gray-300 py-2 text-[8px] md:text-base">Action</th>
            
           </tr>
         </thead>
-        <tbody>{display}</tbody>
+        <tbody className="bg-white divide-y text-black divide-gray-300">{display}</tbody>
       </table>
       <TablePagination currentPage={currentPage} totalPages={totalPages} paginate={paginate} />
-    </>
+    </div>
   );
 };
 

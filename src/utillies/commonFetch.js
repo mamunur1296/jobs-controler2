@@ -5,14 +5,14 @@ export const header={
     "Access-Control-Allow-Credentials": true,
     "cache-control":"no-cache,no-store"
   }
-  const apiRequest = async (method, url, data = null, headers = {}, withCredentials = true) => {
+  const apiRequest = async (method, url, data = null, headers = {}) => {
     try {
       const apiUrl = `${process.env.React_App_LOCAL_HOST}${url}`;
       let config = {
         method,
         url: apiUrl,
         headers,
-        withCredentials,
+        withCredentials:true,
       };
   
       if (data) {

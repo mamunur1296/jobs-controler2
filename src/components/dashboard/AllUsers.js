@@ -18,18 +18,18 @@ const AllUsers = () => {
                     <table className="min-w-full divide-y divide-gray-300">
                         <thead className="bg-orange-500">
                             <tr>
-                                <th className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">Name</th>
-                                <th className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">Email</th>
-                                <th className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">Mobile</th>
-                                <th className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">IP Address</th>
-                                <th className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">User Agent</th>
-                                <th className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">Role</th>
-                                <th className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">Action</th>
+                                <th className="border md:py-3 md:px-6 border-gray-300 py-2 text-[8px] md:text-base">Name</th>
+                                <th className="border md:py-3 md:px-6 border-gray-300 py-2 text-[8px] md:text-base">Email</th>
+                                <th className="border md:py-3 md:px-6 border-gray-300 py-2 text-[8px] md:text-base">Mobile</th>
+                                <th className="border md:py-3 md:px-6 border-gray-300 py-2 text-[8px] md:text-base">IP Address</th>
+                                <th className="border md:py-3 md:px-6 border-gray-300 py-2 text-[8px] md:text-base">User Agent</th>
+                                <th className="border md:py-3 md:px-6 border-gray-300 py-2 text-[8px] md:text-base">Role</th>
+                                <th className="border md:py-3 md:px-6 border-gray-300 py-2 text-[8px] md:text-base">Action</th>
                             </tr>
                         </thead>
                         <tbody className="bg-white divide-y divide-gray-300">
-                            {data.map(user => (
-                                <UserCard key={user._id} user={user} />
+                            {data?.map((user,i) => (
+                                <UserCard i={i} key={user._id} user={user} />
                             ))}
                         </tbody>
                     </table>

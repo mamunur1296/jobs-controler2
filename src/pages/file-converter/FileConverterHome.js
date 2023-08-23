@@ -69,8 +69,8 @@ const FileConverterHome = () => {
     // Render component
    
     return (
-        <div className="bg-gray-900 h-screen px-6 md:px-12 pt-6 md:pt-10">
-            <div className="mb-4 flex flex-col md:flex-row md:justify-between items-center">
+        <div className="bg-gray-900 h-screen  px-6 lg:px-12 pt-6 lg:pt-10">
+            <div className="mb-4 flex flex-col md:gap-y-3 lg:flex-row lg:justify-between items-center">
                 <input
                     className="text-white bg-gradient-to-r from-orange-500 via-orange-600 to-orange-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-4 py-2.5 md:mb-0 mb-2"
                     type="file"
@@ -91,7 +91,7 @@ const FileConverterHome = () => {
                         <FontAwesomeIcon icon={faSearch} />
                     </button>
                 </div>
-                <div className="flex mt-2 md:mt-0">
+                <div className="flex mt-2 gap-10 md:gap-0 md:mt-0">
                     <Link
                         to="/"
                         className="text-white bg-gradient-to-r from-orange-500 via-orange-600 to-orange-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-4 py-2.5 md:mr-2 mb-2"
@@ -102,47 +102,44 @@ const FileConverterHome = () => {
                 </div>
             </div>
             <div className="overflow-x-auto">
-                <table className="min-w-full divide-y bg-orange-500 divide-gray-300 text-white">
-                    {/* Table Headers */}
-                    <thead>
-                        <tr>
-                            <th className="border py-3 px-6 border-gray-300 p-2">Name</th>
-                            <th className="border py-3 px-6 border-gray-300 p-2">Email</th>
-                            <th className="border py-3 px-6 border-gray-300 p-2">Phone</th>
-                            <th className="border py-3 px-6 border-gray-300 p-2">Gender</th>
-                            <th className="border py-3 px-6 border-gray-300 p-2">Address</th>
-                            <th className="border py-3 px-6 border-gray-300 p-2">Actions</th>
-                        </tr>
-                    </thead>
-                    {/* Table Rows */}
-                    <tbody className="bg-white divide-y text-black divide-gray-300">
+            <table className="min-w-full  bg-orange-500 divide-gray-300 text-white">
+                <thead>
+                    <tr>
+                        <th className="border md:py-3 md:px-6 border-gray-300 py-2 text-[9px] md:text-base">Name</th>
+                        <th className="border md:py-3 md:px-6 border-gray-300 py-2 text-[9px] md:text-base">Email</th>
+                        <th className="border md:py-3 md:px-6 border-gray-300 py-2 text-[9px] md:text-base">Phone</th>
+                        <th className="border md:py-3 md:px-6 border-gray-300 py-2 text-[9px] md:text-base">Gender</th>
+                        <th className="border md:py-3 md:px-6 border-gray-300 py-2 text-[9px] md:text-base">Address</th>
+                        <th className="border md:py-3 md:px-6 border-gray-300 py-2 text-[9px] md:text-base">Actions</th>
+                    </tr>
+                </thead>
+                <tbody className="bg-white divide-y text-black divide-gray-300">
                     {data?.employees
-                        ?.filter((data) =>
-                            data?.name?.toLowerCase()?.includes(searchQuery.toLowerCase())
-                        )
-                        .slice(startIndex, endIndex) // Apply pagination to the filtered data
-                        .map((data, index) => (
-                            <tr key={index} className={index % 2 === 0 ? "bg-gray-100" : ""}>
-                                <td className="border border-gray-300 p-2">{data.name}</td>
-                                <td className="border border-gray-300 p-2">{data.email}</td>
-                                <td className="border border-gray-300 p-2">{data.phone}</td>
-                                <td className="border border-gray-300 p-2">{data.gender}</td>
-                                <td className="border border-gray-300 p-2">{data.address}</td>
-                                <td className="border flex items-center justify-center border-gray-300 p-2">
-                                <button type="button" className="text-white bg-gradient-to-r from-orange-500 via-orange-600 to-orange-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">Edit</button>
-                                </td>
-                            </tr>
-                        ))}
+                                ?.filter((data) =>
+                                    data?.name?.toLowerCase()?.includes(searchQuery.toLowerCase())
+                                )
+                                .slice(startIndex, endIndex) // Apply pagination to the filtered data
+                                .map((data, index) => (
+                                    <tr key={index} className={index % 2 === 0 ? "bg-gray-100" : ""}>
+                                        <td className="border border-gray-300 text-[9px] p-0 md:text-base md:p-2">{data.name}</td>
+                                        <td className="border border-gray-300 text-[9px] p-0 md:text-base md:p-2">{data.email}</td>
+                                        <td className="border border-gray-300 text-[9px] p-0 md:text-base md:p-2">{data.phone}</td>
+                                        <td className="border border-gray-300 text-[9px] p-0 md:text-base md:p-2">{data.gender}</td>
+                                        <td className="border border-gray-300 text-[9px] p-0 md:text-base md:p-2">{data.address}</td>
+                                        <td className="border flex  items-center justify-center border-gray-300 p-0 md:p-2">
+                                        <button type="button" className="text-white bg-gradient-to-r text-[9px] md:text-base  from-orange-500 via-orange-600 to-orange-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-1 md:px-5 py-.5 md:py-2.5 text-center md:mr-2 md:mb-2">Edit</button>
+                                        </td>
+                                    </tr>
+                                ))}
                 </tbody>
-
-                </table>
+            </table>
                 {/* Pagination */}
                 <div className="flex justify-center mt-4">
                     {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
                         <button
                             key={page}
                             className={`mx-1 py-2 px-4 rounded-lg ${
-                                page === currentPage ? 'text-white bg-gradient-to-r from-orange-500 via-orange-600 to-orange-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2' : 'bg-gray-700 text-white text-sm px-5 py-2.5 text-center mr-2 mb-2'
+                                page === currentPage ? 'text-white bg-gradient-to-r from-orange-500 via-orange-600 to-orange-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg px-3 md:px-5  md:py-2.5 text-center md:mr-2 md:mb-2' : 'bg-gray-700 text-white text-sm px-3 md:px-5 py-.5 md:py-2.5 text-center md:mr-2 md:mb-2'
                             }`}
                             onClick={() => setCurrentPage(page)}
                         >

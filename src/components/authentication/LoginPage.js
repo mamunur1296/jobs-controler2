@@ -1,13 +1,14 @@
 // src/components/LoginPage.js
-import React, {   useContext, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { Link,  useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../authContext/AuthProvaider';
 import { phonLogin } from '../../utillies/auth-utill';
+
 const LoginPage = () => {
   const navigate = useNavigate();
   const [error, setError] = useState('');
-  const {refetch}=useContext(AuthContext)
+  const { refetch } = useContext(AuthContext);
   const {
     register,
     handleSubmit,
@@ -21,30 +22,26 @@ const LoginPage = () => {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          "Access-Control-Allow-Credentials": true,
-          "cache-control":"no-cache,no-store"
+          'Access-Control-Allow-Credentials': true,
+          'cache-control': 'no-cache, no-store',
         },
         credentials: 'include',
         body: JSON.stringify(formData),
-      })
+      });
       const data = await response.json();
       console.log(data);
       if (response.ok) {
-        refetch().then( async ()=>{
-          phonLogin().then(()=>{
-            navigate("/otpauth")
-  
-          })
-        })
+        refetch().then(async () => {
+          phonLogin().then(() => {
+            navigate('/otpauth');
+          });
+        });
         console.log('Registration successful:', data);
-      }else if(data.errors){
+      } else if (data.errors) {
         console.log(error);
-      } else{
+      } else {
         throw new Error('Network response was not ok');
       }
-
-
-      // Do something with the response data, e.g., show a success message or redirect to another page
     } catch (error) {
       console.log(error);
       setError('Invalid credentials. Please try again.');
@@ -52,24 +49,20 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-400 to-blue-600 flex justify-center items-center">
+    <div className="min-h-screen bg-gray-900 flex justify-center items-center">
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="bg-white shadow-md rounded px-8 pt-6 pb-8 w-96"
+        className="bg-gray-800 text-orange-500 shadow-md rounded px-8 pt-6 pb-8 w-96"
       >
         <h2 className="text-3xl font-bold mb-6 text-center">Login</h2>
         {error && <p className="text-red-500 text-sm mb-4">{error}</p>}
         <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">
+          <label className="block text-gray-300 text-sm font-bold mb-2" htmlFor="email">
             Email
           </label>
           <input
             {...register('email', {
               required: 'Email is required',
-              pattern: {
-                value: /^\S+@\S+$/i,
-                message: 'Invalid email address',
-              },
             })}
             type="text"
             id="email"
@@ -79,13 +72,12 @@ const LoginPage = () => {
           {errors.email && <p className="text-red-500 text-xs mt-1">{errors.email.message}</p>}
         </div>
         <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="password">
+          <label className="block text-gray-300 text-sm font-bold mb-2" htmlFor="password">
             Password
           </label>
           <input
             {...register('password', {
               required: 'Password is required',
-              minLength: { value: 6, message: 'Password must be at least 6 characters' },
             })}
             type="password"
             id="password"
@@ -100,13 +92,17 @@ const LoginPage = () => {
         <div className="mb-6">
           <button
             type="submit"
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full"
+            className="bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full"
           >
             Login
           </button>
-          
         </div>
-      <p>Alrady have an account Please <Link to="/regester" className='text-green-400'>Regester</Link></p>
+        <p>
+          Already have an account? Please{' '}
+          <Link to="/regester" className="text-green-400">
+            Register
+          </Link>
+        </p>
       </form>
     </div>
   );

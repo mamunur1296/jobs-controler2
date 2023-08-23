@@ -31,7 +31,8 @@ const VarticalNavChild = ({folder}) => {
       <div  ref={dropdownRef}>
       <button 
         onClick={toggleDropdown}
-        className="flex items-center gap-2">
+        className="flex items-center gap-2"
+        >
             <FontAwesomeIcon icon={faFolder} className="text-gray-400" />
             <p className="text-sm">{OrganizationUnitFullyQualifiedName}</p>
         </button>

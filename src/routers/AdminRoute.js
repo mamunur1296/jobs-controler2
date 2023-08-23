@@ -5,6 +5,7 @@ import { AuthContext } from "../authContext/AuthProvaider";
 const AdminRoute = ({ children }) => {
   const location = useLocation();
   const { users, loading } = useContext(AuthContext);
+  console.log(users, "private");
   if (loading) {
     return <p>Loading...</p>;
   }
@@ -15,7 +16,7 @@ const AdminRoute = ({ children }) => {
     }
 
   // Redirect the user to the login page if not authenticated
-  return <Navigate to="/authlogin" state={{ from: location }} replace />;
+  return <Navigate to="/" state={{ from: location }} replace />;
 };
 
 export default AdminRoute;

@@ -35,7 +35,10 @@ const RegisterForm = () => {
       });
 
       const data = await regResponse.json();
-
+      console.log(data);
+      if(data.message){
+        setErrors(data.message);
+      }
       if (regResponse.ok) {
         // Handle successful registration here
         navigate('/authlogin');
@@ -54,13 +57,19 @@ const RegisterForm = () => {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen">
-      <form onSubmit={handleSubmit(onSubmit)} className="w-1/3 bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+    <div className="flex justify-center items-center  min-h-screen bg-gray-900">
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className=" md:w-1/3 bg-gray-800 text-orange-500 shadow-md rounded px-8 pt-6 pb-8 mb-4"
+      >
         <h2 className="text-2xl font-bold mb-4">Register</h2>
         {Object.keys(error).length > 0 && <p className="text-red-500 text-xl mt-1">Registration failed</p>}
         
+        {/* Input fields and error handling for them */}
+        
+        {/* Name */}
         <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="name">
+          <label className="block text-gray-300 text-sm font-bold mb-2" htmlFor="name">
             Name
           </label>
           <input
@@ -74,18 +83,14 @@ const RegisterForm = () => {
           {error.name && <p className="text-red-500 text-xs mt-1">{error.name.msg}</p>}
         </div>
 
-        {/* Other input fields and error handling for them */}
+        {/* Email */}
         <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">
+          <label className="block text-gray-300 text-sm font-bold mb-2" htmlFor="email">
             Email
           </label>
           <input
             {...register('email', {
               required: 'Email is required',
-              pattern: {
-                value: /^\S+@\S+$/i,
-                message: 'Invalid email address',
-              },
             })}
             type="text"
             id="email"
@@ -96,8 +101,9 @@ const RegisterForm = () => {
           {error.email && <p className="text-red-500 text-xs mt-1">{error.email.msg}</p>}
         </div>
 
+        {/* Mobile */}
         <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="mobile">
+          <label className="block text-gray-300 text-sm font-bold mb-2" htmlFor="mobile">
             Mobile
           </label>
           <input
@@ -111,8 +117,9 @@ const RegisterForm = () => {
           {error.mobile && <p className="text-red-500 text-xs mt-1">{error.mobile.msg}</p>}
         </div>
 
+        {/* Password */}
         <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="password">
+          <label className="block text-gray-300 text-sm font-bold mb-2" htmlFor="password">
             Password
           </label>
           <input
@@ -129,16 +136,22 @@ const RegisterForm = () => {
           {error.password && <p className="text-red-500 text-xs mt-1">{error.password.msg}</p>}
         </div>
 
+        {/* Register Button */}
         <div className="mb-6">
           <button
             type="submit"
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full"
+            className="bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full"
           >
             Register
           </button>
         </div>
+        
+        {/* Already have an account? Login link */}
         <p>
-          Already have an account? Please <Link to="/authlogin" className="text-green-400">Login</Link>
+          Already have an account? Please{' '}
+          <Link to="/authlogin" className="text-green-400">
+            Login
+          </Link>
         </p>
       </form>
     </div>
