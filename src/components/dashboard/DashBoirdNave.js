@@ -17,7 +17,7 @@ const DashBoirdNave = () => {
   return (
     <div className="md:w-80 bg-black md:h-screen text-white">
       <div className="flex items-center justify-between py-4 px-6 md:p-0">
-        <span className="text-xl  font-semibold bg-orange-600 py-5 px-10 md:px-20 ">Admin Dashboird</span>
+        <span className="md:text-xl w-3/4 md:w-full font-semibold bg-orange-600 py-2 md:py-5 text-center">Admin Dashboird</span>
         <button
           onClick={toggleNav}
           className="md:hidden focus:outline-none"

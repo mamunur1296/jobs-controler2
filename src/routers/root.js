@@ -3,7 +3,7 @@ import { createBrowserRouter } from "react-router-dom";
 
 // Import components for different pages
 import Home from "../pages/home/Home";
-import UiHome from "../pages/ui-path/UiHome";
+// import UiHome from "../pages/ui-path/UiHome";
 import FileConverterHome from "../pages/file-converter/FileConverterHome";
 import Login from "../pages/login/Login";
 import PrivateRoure from "./PrivateRoure";
@@ -16,6 +16,7 @@ import VarifyOtp from "../components/authentication/VarifyOtp";
 import Dashboard from "../pages/dashboard/Dashboard";
 import AdminRoute from "./AdminRoute";
 import AllUsers from "../components/dashboard/AllUsers";
+import UiDashboard from "../ui-path-dashboard/UiDashboard";
 
 
 /**
@@ -76,7 +77,7 @@ export const router = createBrowserRouter([
     },
     {
         path: '/ui-path',
-        element: <PrivateRoure><UiHome /></PrivateRoure> , // Render the UiHome component when the URL path is '/ui-path'
+        element: <PrivateRoure><UiDashboard /></PrivateRoure> , // Render the UiHome component when the URL path is '/ui-path'
         children:[
             {
                 path: "/ui-path/:name/:id/:key",
